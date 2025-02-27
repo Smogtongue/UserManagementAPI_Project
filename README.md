@@ -2,10 +2,10 @@
 <h1>User Management API (Microsoft Back End Development Final Project)</h1>
 
 <h2>Unauthorized Access when in Swagger before entering Bearer token</h2>
-<img scr= https://github.com/Smogtongue/UserManagementAPI_Project/blob/a63ccd383bfb0aafe0b88e1dc4ad0f6d023f169f/UserManagementAPI/Images/401_UnauthorizedError.png>
+<img src= https://github.com/Smogtongue/UserManagementAPI_Project/blob/a63ccd383bfb0aafe0b88e1dc4ad0f6d023f169f/UserManagementAPI/Images/401_UnauthorizedError.png>
 
 <h2>Swagger: Valid Token Generation to Console on startup with JWT</h2>
-<img scr= https://github.com/Smogtongue/UserManagementAPI_Project/blob/a63ccd383bfb0aafe0b88e1dc4ad0f6d023f169f/UserManagementAPI/Images/JWT%20Token%20Generation.png>
+<img src= https://github.com/Smogtongue/UserManagementAPI_Project/blob/a63ccd383bfb0aafe0b88e1dc4ad0f6d023f169f/UserManagementAPI/Images/JWT%20Token%20Generation.png>
 
 <h2>Error when User ID Not Found</h2>
 <img src= https://github.com/Smogtongue/UserManagementAPI_Project/blob/a63ccd383bfb0aafe0b88e1dc4ad0f6d023f169f/UserManagementAPI/Images/IDNotYetGenerated.png>
