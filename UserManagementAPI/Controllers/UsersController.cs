@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization; // Add this using directive
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations; // Add this using directive
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,33 +9,23 @@ namespace UserManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize] // Secure the controller with the Authorize attribute
     public class UsersController : ControllerBase
     {
+        private static List<User> _users = new List<User>(); // In-memory list to store users
+
         // GET: api/Users
         [HttpGet]
-        public async Task<IActionResult> GetUsers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public IActionResult GetUsers()
         {
-            // Simulate fetching users from a database with pagination
-            var users = await Task.Run(() => new List<User>
-            {
-                new User { Id = 1, Name = "User1", Email = "user1@example.com" },
-                new User { Id = 2, Name = "User2", Email = "user2@example.com" }
-                // Add more users as needed
-            });
-
-            // Apply pagination
-            var pagedUsers = users.Skip((pageNumber - 1) * pageSize).Take(pageSize);
-
-            return Ok(pagedUsers);
+            return Ok(_users);
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser(int id)
+        public IActionResult GetUser(int id)
         {
-            // Simulate fetching a user by id from a database
-            var user = await Task.Run(() => new User { Id = id, Name = "User" + id, Email = "user" + id + "@example.com" });
-
+            var user = _users.FirstOrDefault(u => u.Id == id);
             if (user == null)
             {
                 return NotFound(new { Message = $"User with ID {id} not found." });
@@ -44,7 +36,7 @@ namespace UserManagementAPI.Controllers
 
         // POST: api/Users
         [HttpPost]
-        public async Task<IActionResult> CreateUser([FromBody] UserDto userDto)
+        public IActionResult CreateUser([FromBody] UserDto userDto)
         {
             if (!ModelState.IsValid)
             {
@@ -54,64 +46,70 @@ namespace UserManagementAPI.Controllers
             // Map UserDto to User model
             var user = new User
             {
+                Id = _users.Count + 1, // Generate a new ID
                 Name = userDto.Name,
                 Email = userDto.Email
             };
 
-            // Add user to the database (pseudo code)
-            await Task.Run(() => {
-                // _context.Users.Add(user);
-                // _context.SaveChanges();
-            });
+            // Add user to the in-memory list
+            _users.Add(user);
 
-            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
+            return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user); // Return the created user in the response body
         }
 
         // PUT: api/Users/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateUser(int id, [FromBody] UserDto userDto)
+        public IActionResult UpdateUser(int id, [FromBody] UserDto userDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            // Simulate fetching a user by id from a database
-            var user = await Task.Run(() => new User { Id = id, Name = userDto.Name, Email = userDto.Email });
-
+            var user = _users.FirstOrDefault(u => u.Id == id);
             if (user == null)
             {
                 return NotFound(new { Message = $"User with ID {id} not found." });
             }
 
-            // Update user in the database (pseudo code)
-            await Task.Run(() => {
-                // _context.Users.Update(user);
-                // _context.SaveChanges();
-            });
+            // Update user in the in-memory list
+            user.Name = userDto.Name;
+            user.Email = userDto.Email;
 
             return NoContent();
         }
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public IActionResult DeleteUser(int id)
         {
-            // Simulate fetching a user by id from a database
-            var user = await Task.Run(() => new User { Id = id, Name = "User" + id, Email = "user" + id + "@example.com" });
-
+            var user = _users.FirstOrDefault(u => u.Id == id);
             if (user == null)
             {
                 return NotFound(new { Message = $"User with ID {id} not found." });
             }
 
-            // Delete user from the database (pseudo code)
-            await Task.Run(() => {
-                // _context.Users.Remove(user);
-                // _context.SaveChanges();
-            });
+            // Remove user from the in-memory list
+            _users.Remove(user);
 
             return NoContent();
         }
+    }
+
+    // User model
+    public class User
+    {
+        public int Id { get; set; }
+        public required string Name { get; set; } // Use required modifier
+        public required string Email { get; set; } // Use required modifier
+    }
+
+    // UserDto model
+    public class UserDto
+    {
+        public required string Name { get; set; } // Use required modifier
+
+        [EmailAddress(ErrorMessage = "Invalid email address")] // Add email validation
+        public required string Email { get; set; } // Use required modifier
     }
 }

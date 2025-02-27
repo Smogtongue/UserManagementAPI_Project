@@ -17,23 +17,13 @@ public class LoggingMiddleware
     public async Task InvokeAsync(HttpContext context)
     {
         // Log the request
-        _logger.LogInformation("Handling request: {Method} {Path}", context.Request.Method, context.Request.Path);
+        _logger.LogInformation($"Handling request: {context.Request.Method} {context.Request.Path}");
 
-        // Copy the original response body stream
-        var originalBodyStream = context.Response.Body;
+        // Call the next middleware in the pipeline
+        await _next(context);
 
-        using (var responseBody = new MemoryStream())
-        {
-            context.Response.Body = responseBody;
-
-            await _next(context);
-
-            // Log the response
-            _logger.LogInformation("Response: {StatusCode}", context.Response.StatusCode);
-
-            // Copy the contents of the new memory stream (which contains the response) to the original stream
-            await responseBody.CopyToAsync(originalBodyStream);
-        }
+        // Log the response
+        _logger.LogInformation($"Response: {context.Response.StatusCode}");
     }
 }
 
