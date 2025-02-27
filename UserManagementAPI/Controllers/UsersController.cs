@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace UserManagementAPI.Controllers
 {
@@ -9,16 +10,20 @@ namespace UserManagementAPI.Controllers
     {
         // GET: api/Users
         [HttpGet]
-        public IActionResult GetUsers()
+        public async Task<IActionResult> GetUsers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            // Simulate fetching users from a database
+            // Simulate fetching users from a database with pagination
             var users = new List<User>
             {
                 new User { Id = 1, Name = "User1", Email = "user1@example.com" },
                 new User { Id = 2, Name = "User2", Email = "user2@example.com" }
+                // Add more users as needed
             };
 
-            return Ok(users);
+            // Apply pagination
+            var pagedUsers = users.Skip((pageNumber - 1) * pageSize).Take(pageSize);
+
+            return Ok(pagedUsers);
         }
 
         // GET: api/Users/5
@@ -30,7 +35,7 @@ namespace UserManagementAPI.Controllers
 
             if (user == null)
             {
-                return NotFound();
+                return NotFound(new { Message = $"User with ID {id} not found." });
             }
 
             return Ok(user);
@@ -68,12 +73,12 @@ namespace UserManagementAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            // Simulate updating a user in the database
+            // Simulate fetching a user by id from a database
             var user = new User { Id = id, Name = userDto.Name, Email = userDto.Email };
 
             if (user == null)
             {
-                return NotFound();
+                return NotFound(new { Message = $"User with ID {id} not found." });
             }
 
             // Update user in the database (pseudo code)
@@ -92,7 +97,7 @@ namespace UserManagementAPI.Controllers
 
             if (user == null)
             {
-                return NotFound();
+                return NotFound(new { Message = $"User with ID {id} not found." });
             }
 
             // Delete user from the database (pseudo code)
