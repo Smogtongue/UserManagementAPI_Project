@@ -23,6 +23,12 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+// Add the error handling middleware
+app.UseErrorHandlingMiddleware();
+
+// Add the logging middleware
+app.UseLoggingMiddleware();
+
 app.MapControllers();
 
 app.Run();
