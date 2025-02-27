@@ -30,6 +30,8 @@
 <h3> api/Users list after Delete, showing successful deletion of id3</h3>
 <img src= https://github.com/Smogtongue/UserManagementAPI_Project/blob/a63ccd383bfb0aafe0b88e1dc4ad0f6d023f169f/UserManagementAPI/Images/UserList_AfterDelete.png>
 
+<h3>Copilot Edits documentation</h3>
+<img src= https://github.com/Smogtongue/UserManagementAPI_Project/blob/d23e1999dfe3df0648104c2ac72a8bf2564527fc/UserManagementAPI/Images/CoPilotDocumentation.png>
 
 
 
