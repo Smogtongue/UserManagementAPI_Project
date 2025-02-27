@@ -47,3 +47,11 @@ C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagemen
 C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagementAPI_Project\UserManagementAPI\obj\Debug\net9.0\UserManagementAPI.pdb
 C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagementAPI_Project\UserManagementAPI\obj\Debug\net9.0\UserManagementAPI.genruntimeconfig.cache
 C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagementAPI_Project\UserManagementAPI\obj\Debug\net9.0\ref\UserManagementAPI.dll
+C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagementAPI_Project\UserManagementAPI\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagementAPI_Project\UserManagementAPI\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagementAPI_Project\UserManagementAPI\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagementAPI_Project\UserManagementAPI\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagementAPI_Project\UserManagementAPI\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagementAPI_Project\UserManagementAPI\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagementAPI_Project\UserManagementAPI\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\elzof\OneDrive\Desktop\Coursera\UserManagementAPI_Project\UserManagementAPI_Project\UserManagementAPI\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
